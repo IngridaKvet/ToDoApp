@@ -1,0 +1,120 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 17.5
+-- Dumped by pg_dump version 17.5
+
+-- Started on 2025-06-24 21:09:48
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 222 (class 1259 OID 16408)
+-- Name: categories; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.categories (
+    id integer NOT NULL,
+    category_name character varying,
+    category_color character varying,
+    category_icon character varying
+);
+
+
+ALTER TABLE public.categories OWNER TO postgres;
+
+--
+-- TOC entry 221 (class 1259 OID 16407)
+-- Name: projects_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.projects_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.projects_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 4912 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: projects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.projects_id_seq OWNED BY public.categories.id;
+
+
+--
+-- TOC entry 4757 (class 2604 OID 16411)
+-- Name: categories id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories ALTER COLUMN id SET DEFAULT nextval('public.projects_id_seq'::regclass);
+
+
+--
+-- TOC entry 4906 (class 0 OID 16408)
+-- Dependencies: 222
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.categories VALUES (1, 'Brainstorming', '#FFD700', 'lightbulb');
+INSERT INTO public.categories VALUES (2, 'Marketing Campaign', '#FF6B6B', 'target');
+INSERT INTO public.categories VALUES (3, 'NAUJAS MANO PROJECTAS', '#fffffff', 'bbbb');
+INSERT INTO public.categories VALUES (5, 'sports', '#fff0ff', 'bear');
+INSERT INTO public.categories VALUES (6, 'sports', '#fff0ff', 'bearrs');
+INSERT INTO public.categories VALUES (7, 'sports', '#fff0ff', 'bearrs');
+INSERT INTO public.categories VALUES (10, 'exercisne', '#fff0ff', 'bearrs');
+INSERT INTO public.categories VALUES (11, 'exercisne', '#fff0ff', '✅');
+INSERT INTO public.categories VALUES (12, 'Citrina', '#67d12e', '🍋');
+INSERT INTO public.categories VALUES (13, 'HELLOO', '#0000a0', '🍋');
+INSERT INTO public.categories VALUES (33, 'Namai', '#000080', '🍐');
+INSERT INTO public.categories VALUES (36, '2kateeeeeeee', '#ffff80', '🍋');
+INSERT INTO public.categories VALUES (35, 'Namai', '#400000', '🍐');
+INSERT INTO public.categories VALUES (38, 'Sportas', '#0000ff', '🍋‍🟩');
+INSERT INTO public.categories VALUES (39, 'zgfgd', '#000000', 'dg');
+
+
+--
+-- TOC entry 4913 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: projects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.projects_id_seq', 39, true);
+
+
+--
+-- TOC entry 4759 (class 2606 OID 16415)
+-- Name: categories projects_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT projects_pkey PRIMARY KEY (id);
+
+
+-- Completed on 2025-06-24 21:09:48
+
+--
+-- PostgreSQL database dump complete
+--
+

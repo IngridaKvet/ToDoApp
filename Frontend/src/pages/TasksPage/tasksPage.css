@@ -1,0 +1,6 @@
+.tasksPage{
+    display: flex;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    overflow: hidden;
+}

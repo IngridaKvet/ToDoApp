@@ -1,0 +1,20 @@
+meta {
+  name: CreateCategory
+  type: http
+  seq: 8
+}
+
+post {
+  url: http://localhost:3001/api/v1/categories
+  body: json
+  auth: inherit
+}
+
+body:json {
+    {
+      "category_name": "exercisne",
+      "category_color": "#fff0ff",
+      "category_icon": "✅"
+    
+    }
+}

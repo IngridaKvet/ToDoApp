@@ -1,0 +1,138 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 17.5
+-- Dumped by pg_dump version 17.5
+
+-- Started on 2025-06-24 21:09:59
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 220 (class 1259 OID 16399)
+-- Name: tasks; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.tasks (
+    id integer NOT NULL,
+    title character varying,
+    description character varying,
+    deadline date,
+    category_id integer,
+    created_at timestamp with time zone,
+    status public.task_status DEFAULT 'todo'::public.task_status,
+    priority public.task_priority DEFAULT 'medium'::public.task_priority
+);
+
+
+ALTER TABLE public.tasks OWNER TO postgres;
+
+--
+-- TOC entry 219 (class 1259 OID 16398)
+-- Name: tasks_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.tasks_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.tasks_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 4916 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: tasks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.tasks_id_seq OWNED BY public.tasks.id;
+
+
+--
+-- TOC entry 4757 (class 2604 OID 16402)
+-- Name: tasks id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tasks ALTER COLUMN id SET DEFAULT nextval('public.tasks_id_seq'::regclass);
+
+
+--
+-- TOC entry 4910 (class 0 OID 16399)
+-- Dependencies: 220
+-- Data for Name: tasks; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.tasks VALUES (1, 'Design Landing Page', 'Create a modern responsive landing page design.', '2025-07-01', 1, '2025-06-17 11:46:42.590377+03', 'in_progress', 'high');
+INSERT INTO public.tasks VALUES (2, 'Buy Groceries', 'Pick up food and other essentials.', '2025-06-21', 1, '2025-06-17 11:46:42.590377+03', 'todo', 'medium');
+INSERT INTO public.tasks VALUES (3, 'Read "Atomic Habits"', 'Finish reading the book for self-development.', '2025-07-10', 2, '2025-06-17 11:46:42.590377+03', 'todo', 'low');
+INSERT INTO public.tasks VALUES (4, 'Finalize Marketing Deck', 'Polish presentation for Monday pitch.', '2025-06-23', 2, '2025-06-17 11:46:42.590377+03', 'done', 'high');
+INSERT INTO public.tasks VALUES (5, 'bjajjajaja', 'zhhdzhhh', '2025-07-01', 3, '2025-06-17 13:04:41.199996+03', 'todo', 'high');
+INSERT INTO public.tasks VALUES (6, 'task NEWWW', 'my new shiny taks', '2025-07-01', 1, '2025-06-17 14:18:03.858782+03', 'todo', 'medium');
+INSERT INTO public.tasks VALUES (16, 'hello111', 'hello oooo', '2025-07-03', 35, '2025-06-23 09:27:46.820579+03', 'todo', 'high');
+INSERT INTO public.tasks VALUES (19, 'Mano Naujas', 'NAUJAS NAUJAS NAUJAS', '2025-06-25', 38, '2025-06-24 20:35:40.95949+03', 'todo', 'medium');
+INSERT INTO public.tasks VALUES (21, 'MANO', 'manoaakaka', '2025-06-05', 38, '2025-06-24 20:39:31.641153+03', 'todo', 'medium');
+INSERT INTO public.tasks VALUES (22, 'dgr', 'dg', '2025-06-10', 35, '2025-06-24 20:39:54.221195+03', 'todo', 'medium');
+INSERT INTO public.tasks VALUES (23, 'hello', 'lkml', '2025-06-13', 36, '2025-06-24 20:43:53.623013+03', 'todo', 'medium');
+INSERT INTO public.tasks VALUES (24, 'fhgh', 'fhhfg', '2025-05-29', 39, '2025-06-24 21:08:55.663434+03', 'todo', 'medium');
+
+
+--
+-- TOC entry 4917 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: tasks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.tasks_id_seq', 24, true);
+
+
+--
+-- TOC entry 4761 (class 2606 OID 16406)
+-- Name: tasks tasks_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tasks
+    ADD CONSTRAINT tasks_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4763 (class 2620 OID 16470)
+-- Name: tasks trigger_set_created_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_set_created_at BEFORE INSERT ON public.tasks FOR EACH ROW EXECUTE FUNCTION public.set_created_at();
+
+
+--
+-- TOC entry 4762 (class 2606 OID 16446)
+-- Name: tasks category_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tasks
+    ADD CONSTRAINT category_fk FOREIGN KEY (category_id) REFERENCES public.categories(id) ON DELETE CASCADE NOT VALID;
+
+
+-- Completed on 2025-06-24 21:10:00
+
+--
+-- PostgreSQL database dump complete
+--
+

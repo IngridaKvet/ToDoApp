@@ -1,0 +1,17 @@
+meta {
+  name: DeleteTaskById
+  type: http
+  seq: 14
+}
+
+delete {
+  url: http://localhost:3001/api/v1/tasks/7
+  body: none
+  auth: inherit
+}
+
+body:json {
+  {
+    "title": "NEW TASK TITLEEEEE"
+  }
+}

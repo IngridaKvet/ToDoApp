@@ -1,0 +1,17 @@
+meta {
+  name: UpdateTaskById
+  type: http
+  seq: 13
+}
+
+patch {
+  url: http://localhost:3001/api/v1/tasks/7
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "title": "NEW TASK TITLEEEEE"
+  }
+}
