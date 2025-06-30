@@ -1,6 +1,6 @@
 # ✅ Task Management App – Full Stack Overview
 
-This is a full-stack **Task Management App** built with **React (Vite)** for the frontend and **Node.js (Express)** with **PostgreSQL** for the backend. It supports **user authentication**, **task and category management**, and uses **JWT-based session handling**.  
+This is a full-stack **Task Management App** built with **React (Vite)** for the frontend and **Node.js (Express)** with **PostgreSQL** for the backend. It supports **user authentication**, **task and category management**, and uses **JWT for Authentication**.  
 
 ---
 
